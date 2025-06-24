@@ -62,7 +62,7 @@ const FormValidasi = () => {
       const data = await response.json();
       setCheckData(data);
       setChecked(true);
-      setSuccess("Check successful! You can now submit the form.");
+      setSuccess("Mobil terdaftar di database kendaraan! Silakan ajukan approval validasi ke atasan.");
     } catch (err) {
       setError("An error occurred during check. Please try again.");
     }
@@ -117,11 +117,11 @@ const FormValidasi = () => {
 
       if (!response.ok) {
         const resData = await response.json();
-        setError(resData.message || "Validation failed");
+        setError(resData.message || "Pengajuan validasi gagal");
         return;
       }
 
-      setSuccess("Validation successful!");
+      setSuccess("Pengajuan validasi BERHASIL! Silakan tunggu approval dari atasan.");
       setNopol("");
       setPA("");
       setCheckData(null);
