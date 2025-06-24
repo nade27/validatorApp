@@ -2,7 +2,11 @@
 import { useEffect, useState } from "react";
 import { Table } from "flowbite-react";
 
-const TabelValidasi = () => {
+interface TabelValidasiProps {
+  refreshKey: any;
+}
+
+const TabelValidasi = ({ refreshKey }: TabelValidasiProps) => {
   const [validasiData, setValidasiData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -34,7 +38,7 @@ const TabelValidasi = () => {
 
   useEffect(() => {
     fetchValidasiData();
-  }, []);
+  }, [refreshKey]);
 
   return (
     <div className="rounded-xl dark:shadow-dark-md shadow-md bg-white dark:bg-darkgray p-6 relative w-full break-words">
@@ -60,13 +64,13 @@ const TabelValidasi = () => {
           <Table.Body className="divide-y divide-border dark:divide-darkborder">
             {loading ? (
               <Table.Row>
-                <Table.Cell colSpan={7} className="text-center">
+                <Table.Cell colSpan={10} className="text-center">
                   Loading...
                 </Table.Cell>
               </Table.Row>
             ) : validasiData.length === 0 ? (
               <Table.Row>
-                <Table.Cell colSpan={7} className="text-center">
+                <Table.Cell colSpan={10} className="text-center">
                   No validation records found.
                 </Table.Cell>
               </Table.Row>
@@ -110,4 +114,4 @@ const TabelValidasi = () => {
   );
 };
 
-export { TabelValidasi };
+export default TabelValidasi;

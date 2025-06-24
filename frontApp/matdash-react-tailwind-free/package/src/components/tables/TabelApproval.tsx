@@ -107,8 +107,8 @@ const TabelApproval = () => {
             <Table.HeadCell>Sopir</Table.HeadCell>
             <Table.HeadCell>Perusahaa Angkutan</Table.HeadCell>
             <Table.HeadCell>Jenis Truk</Table.HeadCell>
-            <Table.HeadCell>Foto STNK</Table.HeadCell>
-            <Table.HeadCell>Foto ID Card</Table.HeadCell>
+            {/* <Table.HeadCell>Foto STNK</Table.HeadCell>
+            <Table.HeadCell>Foto ID Card</Table.HeadCell> */}
             <Table.HeadCell>Pemohon</Table.HeadCell>
             <Table.HeadCell>Created At</Table.HeadCell>
             <Table.HeadCell>Approved At</Table.HeadCell>
@@ -136,7 +136,7 @@ const TabelApproval = () => {
                   <Table.Cell>{item.sopir}</Table.Cell>
                   <Table.Cell>{item.PA}</Table.Cell>
                   <Table.Cell>{item.jenistruk}</Table.Cell>
-                  <Table.Cell>
+                  {/* <Table.Cell>
                     {item.stnk_pic ? (
                       <a href={`http://localhost:3000/${item.stnk_pic}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                         View STNK
@@ -153,7 +153,7 @@ const TabelApproval = () => {
                     ) : (
                       "-"
                     )}
-                  </Table.Cell>
+                  </Table.Cell> */}
                   <Table.Cell>{`${item.nama_users} (${item.nip_users})`}</Table.Cell>
                   <Table.Cell>{new Date(item.create_timestamp).toLocaleString()}</Table.Cell>
                   <Table.Cell>{item.approval_timestamp ? new Date(item.approval_timestamp).toLocaleString() : "-"}</Table.Cell>

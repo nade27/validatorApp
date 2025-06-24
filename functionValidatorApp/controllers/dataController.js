@@ -27,12 +27,12 @@ const getDataEntryByNopolAndPA = async (req, res) => {
     const { nopol, PA } = req.body;
 
     if (!nopol || !PA) {
-      return res.status(400).json({ message: 'nopol and PA are required' });
+      return res.status(400).json({ message: 'Nomor kendaraan dan Nama Perusahaan Angkutan wajib dimasukkan!' });
     }
 
     const data = await getDataByNopolAndPA(nopol, PA);
     if (data.length === 0) {
-      return res.status(400).json({ message: 'Data tidak valid' });
+      return res.status(400).json({ message: 'Nomor kendaraan TIDAK TERDAFTAR di database kendaraan! HUBUNGI ATASAN SEGERA!' });
     }
 
     res.status(200).json({ data });
