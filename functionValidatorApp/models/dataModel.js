@@ -101,12 +101,12 @@ const getDataByNopolAndPA = async (nopol, PA) => {
 };
 
 const insertValidasi = async (validasiData) => {
-  const { id_data_entries, nama_users, nip_users, stnk_pic, card_pic } = validasiData;
+  const { id_data_entries, nama_users, nip_users } = validasiData;
   const sql = `
-    INSERT INTO validasi (id_data_entries, nama_users, nip_users, stnk_pic, card_pic)
+    INSERT INTO validasi (id_data_entries, nama_users, nip_users)
     VALUES (?, ?, ?, ?, ?)
   `;
-  const [result] = await pool.query(sql, [id_data_entries, nama_users, nip_users, stnk_pic, card_pic]);
+  const [result] = await pool.query(sql, [id_data_entries, nama_users, nip_users]);
   return result.insertId;
 };
 

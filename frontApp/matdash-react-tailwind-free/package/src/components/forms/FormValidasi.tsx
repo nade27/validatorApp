@@ -18,8 +18,8 @@ const FormValidasi: React.FC<FormValidasiProps> = ({ onSuccess }) => {
   const [PA, setPA] = useState('');
   const [checkData, setCheckData] = useState<any>(null);
   const [checked, setChecked] = useState(false);
-  const [stnkPic, setStnkPic] = useState<File | null>(null);
-  const [cardPic, setCardPic] = useState<File | null>(null);
+  // const [stnkPic, setStnkPic] = useState<File | null>(null);
+  // const [cardPic, setCardPic] = useState<File | null>(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [user, setUser] = useState<UserToken | null>(null);
@@ -94,18 +94,18 @@ const FormValidasi: React.FC<FormValidasiProps> = ({ onSuccess }) => {
       return;
     }
 
-    if (!stnkPic || !cardPic) {
-      setError('Please upload both STNK and Card pictures.');
-      return;
-    }
+    // if (!stnkPic || !cardPic) {
+    //   setError('Please upload both STNK and Card pictures.');
+    //   return;
+    // }
 
     try {
       const formData = new FormData();
       formData.append('id_data_entries', checkData.data[0].id);
       formData.append('nama_users', user?.nama || '');
       formData.append('nip_users', user?.nip || '');
-      formData.append('stnk_pic', stnkPic);
-      formData.append('card_pic', cardPic);
+      // formData.append('stnk_pic', stnkPic);
+      // formData.append('card_pic', cardPic);
 
       const response = await fetch('http://localhost:3000/api/data/validasi', {
         method: 'POST',
@@ -126,8 +126,8 @@ const FormValidasi: React.FC<FormValidasiProps> = ({ onSuccess }) => {
       setPA('');
       setCheckData(null);
       setChecked(false);
-      setStnkPic(null);
-      setCardPic(null);
+      // setStnkPic(null);
+      // setCardPic(null);
       onSuccess(); // Call the success callback to refresh the table
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -168,44 +168,56 @@ const FormValidasi: React.FC<FormValidasiProps> = ({ onSuccess }) => {
         </div>
 
         {checkData && checkData.data && checkData.data.length > 0 && (
-          <div className="mt-4 p-4 border rounded bg-gray-50 dark:bg-gray-800">
+          <div className="mt-4 p-4 border rounded bg-gray-50 dark:bg-gray-800 overflow-x-auto">
             <h6 className="font-semibold mb-2">Check Data Result:</h6>
-            <ul className="text-sm list-disc list-inside">
-              <li>
-                <strong>Nopol:</strong> {checkData.data[0].nopol}
-              </li>
-              <li>
-                <strong>No Kir:</strong> {checkData.data[0].nokir}
-              </li>
-              <li>
-                <strong>Sopir:</strong> {checkData.data[0].sopir}
-              </li>
-              <li>
-                <strong>PA:</strong> {checkData.data[0].PA}
-              </li>
-              <li>
-                <strong>Jenis Truk:</strong> {checkData.data[0].jenistruk}
-              </li>
-              <li>
-                <strong>P Box:</strong> {checkData.data[0].pbox}
-              </li>
-              <li>
-                <strong>L Box:</strong> {checkData.data[0].lbox}
-              </li>
-              <li>
-                <strong>T Box:</strong> {checkData.data[0].tbox}
-              </li>
-              <li>
-                <strong>Vol Box:</strong> {checkData.data[0].volbox}
-              </li>
-              <li>
-                <strong>Tonase:</strong> {checkData.data[0].tonase}
-              </li>
-            </ul>
+            <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
+              <tbody>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">Nopol</td>
+                  <td className="p-2">{checkData.data[0].nopol}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">No Kir</td>
+                  <td className="p-2">{checkData.data[0].nokir}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">Sopir</td>
+                  <td className="p-2">{checkData.data[0].sopir}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">PA</td>
+                  <td className="p-2">{checkData.data[0].PA}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">Jenis Truk</td>
+                  <td className="p-2">{checkData.data[0].jenistruk}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">P Box</td>
+                  <td className="p-2">{checkData.data[0].pbox}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">L Box</td>
+                  <td className="p-2">{checkData.data[0].lbox}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">T Box</td>
+                  <td className="p-2">{checkData.data[0].tbox}</td>
+                </tr>
+                <tr className="border-b dark:border-gray-700">
+                  <td className="font-semibold p-2">Vol Box</td>
+                  <td className="p-2">{checkData.data[0].volbox}</td>
+                </tr>
+                <tr>
+                  <td className="font-semibold p-2">Tonase</td>
+                  <td className="p-2">{checkData.data[0].tonase}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         )}
 
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <div className="flex items-center gap-4 mt-2">
             <Button color={'info'} type="button" onClick={() => setIsStnkModalOpen(true)}>
               Ambil Gambar STNK
@@ -249,7 +261,7 @@ const FormValidasi: React.FC<FormValidasiProps> = ({ onSuccess }) => {
               />
             </Modal>
           </div>
-        </div>
+        </div> */}
         <div className="flex gap-3 mt-6">
           <Button color={'info'} type="button" onClick={handleCheck}>
             Check
@@ -267,8 +279,8 @@ const FormValidasi: React.FC<FormValidasiProps> = ({ onSuccess }) => {
               setSuccess('');
               setCheckData(null);
               setChecked(false);
-              setStnkPic(null);
-              setCardPic(null);
+              // setStnkPic(null);
+              // setCardPic(null);
             }}
           >
             Cancel
